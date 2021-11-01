@@ -1,0 +1,45 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
+const ejs = require('ejs');
+
+app.set('view engine', 'ejs');
+
+mongoose.connect('mongodb+srv://root:sqltejas@cluster1.64r18.mongodb.net/Computer_Status?retryWrites=true&w=majority');
+
+const pcSchema = {
+    System: String
+    
+}
+// <!-- <td><%= movie.title %></td>
+//           <td><%= movie.genre %></td>
+//           <td><%= movie.year %></td>-->
+const Movie = mongoose.model('Movie', pcSchema);
+
+app.get('/', (req, res) => {
+    Movie.find({}, function(err, stats){
+        res.render('index', {
+            statsList: stats
+        })
+    })    
+})
+app.listen(4000, function() {
+    console.log('server is running');
+}
+);
+
+
+
+
+// app.get('/', (req, res) => {
+//     let name = 'Tejas';
+
+//     res.render('index', {
+//         userName: name
+//     });
+// })
+
+
+
+
+// res.sendFile(__dirname + '/index.html');
