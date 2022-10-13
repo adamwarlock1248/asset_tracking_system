@@ -32,7 +32,7 @@ function App() {
       <Navbar login={login} logout={logout} />
       <Route path="/" exact>
 
-        <Wel verifyUser={verifyUser} />
+      <Wel isLoggedIn={login} verifyUser={verifyUser} />
       </Route>
 
       <Route path="/home">
